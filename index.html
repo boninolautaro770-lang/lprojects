@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LProyects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151A; --surface:#1B1F27; --surface2:#232833; --line:#2C3140;
+    --text:#EDEFF3; --muted:#8A93A3; --accent:#C6FF3D; --accent-dim:#8FB82C;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--text); font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;}
+  header{border-bottom:1px solid var(--line); padding:20px;}
+  .logo{max-width:760px; margin:0 auto; font-weight:700; font-size:20px;}
+  .logo span{color:var(--accent);}
+  main{max-width:760px; margin:0 auto; padding:32px 20px 80px;}
+  .section-title{font-size:13px; color:var(--muted); font-family:'Space Mono',monospace; margin:0 0 16px;}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; margin-bottom:16px;}
+  .card-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .card-top h3{margin:0; font-size:18px;}
+  .ver{color:var(--muted); font-size:13px; font-family:'Space Mono',monospace;}
+  .desc{color:#C7CCD6; font-size:14px; line-height:1.5; margin:8px 0 14px;}
+  .btn{display:inline-block; background:var(--accent); color:#0F1115; text-decoration:none; font-weight:600; font-size:14px; padding:9px 16px; border-radius:4px;}
+  .btn:hover{background:var(--accent-dim);}
+  .empty{color:var(--muted); text-align:center; padding:60px 0;}
+</style>
+</head>
+<body>
+<header><div class="logo">LPro<span>ject</span>s</div></header>
+<main>
+  <p class="section-title">BETAS DISPONIBLES</p>
+  <div id="list"></div>
+</main>
+
+<script>
+// ---- EDITÁ ACÁ TUS PROYECTOS ----
+// downloadUrl: pegá el link donde subiste el archivo (Google Drive, Dropbox, GitHub Releases, etc.)
+const projects = [
+  {
+    name: "Mi App",
+    version: "0.1.0",
+    description: "Descripción corta: qué hace y qué probar en esta beta.",
+    downloadUrl: "https://drive.google.com/tu-link-aca"
+  },
+  // { name: "Otra App", version: "0.2.0", description: "...", downloadUrl: "https://..." },
+];
+// ----------------------------------
+
+const list = document.getElementById("list");
+if(projects.length === 0){
+  list.innerHTML = `<p class="empty">Todavía no hay betas publicadas.</p>`;
+} else {
+  list.innerHTML = projects.map(p => `
+    <div class="card">
+      <div class="card-top"><h3>${p.name}</h3><span class="ver">v${p.version}</span></div>
+      <p class="desc">${p.description}</p>
+      <a class="btn" href="${p.downloadUrl}" target="_blank" rel="noopener">Descargar</a>
+    </div>
+  `).join("");
+}
+</script>
+</body>
+</html>
